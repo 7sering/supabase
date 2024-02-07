@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light" id="mainNav">
@@ -38,6 +40,11 @@ const Navbar = () => {
               <a className="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">
                 Contact
               </a>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link px-lg-3 py-3 py-lg-4" to="/login">
+                Login
+              </Link>
             </li>
           </ul>
         </div>
