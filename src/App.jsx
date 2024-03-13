@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import SignUp from "./pages/Auth/SignUp";
 import Login from "./pages/Auth/Login";
 import { AuthProvider } from "./context/AuthContext";
+import AddPost from "./pages/Post/AddPost";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/signup" element={<SignUp />} />
           <Route exact path="/login" element={<Login />} />
+          <Route exact path="/addPost" element={<AddPost />} />
         </Routes>
       </Router>
     </AuthProvider>

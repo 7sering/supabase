@@ -1,12 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const Navbar = () => {
+  let navigate = useNavigate();
+  const { user, signOut } = useAuth();
+
+  const handleClick = async () => {
+    try {
+      await signOut();
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-light" id="mainNav">
       <div className="container px-4 px-lg-5">
-        <a className="navbar-brand" href="index.html">
+        <Link className="navbar-brand" to="/">
           Start Bootstrap
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -22,9 +34,9 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarResponsive">
           <ul className="navbar-nav ms-auto py-4 py-lg-0">
             <li className="nav-item">
-              <a className="nav-link px-lg-3 py-3 py-lg-4" href="index.html">
+              <Link className="nav-link px-lg-3 py-3 py-lg-4" to="/">
                 Home
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
               <a className="nav-link px-lg-3 py-3 py-lg-4" href="about.html">
@@ -41,11 +53,19 @@ const Navbar = () => {
                 Contact
               </a>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link px-lg-3 py-3 py-lg-4" to="/login">
-                Login
-              </Link>
-            </li>
+            {user ? (
+              <li className="nav-item">
+                <button className="btn btn-danger " onClick={handleClick}>
+                  Logout
+                </button>
+              </li>
+            ) : (
+              <li className="nav-item">
+                <Link className="nav-link px-lg-3 py-3 py-lg-4" to="/login">
+                  Login
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>
